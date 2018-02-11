@@ -2,8 +2,9 @@ $(document).ready(function () {
     var playerSelected = false;
     var combat = false;
     var enemyChosen = false;
-    var attacker ;
-    var defender ;
+    var attacker = null;
+    var defender = null;
+    var deadOpponents = 0;
 
     var frodo = {
         hp: 115,
@@ -37,7 +38,7 @@ $(document).ready(function () {
         ap: 20,
         ca: 20,
         pchar: false,
-        isEnemy: false, 
+        isEnemy: false,
         isDead: false
     };
 
@@ -260,46 +261,102 @@ $(document).ready(function () {
         }
     });
 
-    $("#button").on("click", function() {
+    $("#button").on("click", function () {
         if (combat) {
-        defender.hp = defender.hp - attacker.ap;
-        attacker.ap = attacker.ap * 2
-        attacker.hp = attacker.hp - defender.ca
-        $(".chosen-player").text(attacker.hp)
-        $(".enemy").text(defender.hp)
+            defender.hp = defender.hp - attacker.ap;
+            attacker.ap = attacker.ap * 2
+            attacker.hp = attacker.hp - defender.ca
+            $(".chosen-player").text(attacker.hp)
+            $(".enemy").text(defender.hp)
         }
         if (defender.hp <= 0) {
             $(".enemy").text("DEAD")
             $("#select").html("Select next opponent")
             combat = false;
+            deadOpponents++
             if (defender === frodo) {
                 $("#frodo").css("top", "0px");
                 $("#frodo").css("left", "0px");
                 frodo.isDead = true;
-                $(".fHealth").removeClass("enemy")
-                $("#button").css("display", "none150")
+                $("#fHealth").removeClass("enemy")
+                $("#button").css("display", "none")
             } else if (defender === samwise) {
                 $("#samwise").css("top", "0px");
                 $("#samwise").css("left", "0px");
                 samwise.isDead = true;
-                $(".sHealth").removeClass("enemy")
+                $("#sHealth").removeClass("enemy")
                 $("#button").css("display", "none")
             } else if (defender === gollum) {
                 $("#gollum").css("top", "0px");
                 $("#gollum").css("left", "0px");
                 gollum.isDead = true;
-                $(".gHealth").removeClass("enemy")
+                $("#gHealth").removeClass("enemy")
                 $("#button").css("display", "none")
             } else if (defender === sauron) {
                 $("#sauron").css("top", "0px");
                 $("#sauron").css("left", "0px");
                 sauron.isDead = true;
-                $(".snHealth").removeClass("enemy")
+                $("#snHealth").removeClass("enemy")
+                $("#button").css("display", "none")
+            }
+            if (deadOpponents === 3) {
+                $("#end").css("display", "grid")
                 $("#button").css("display", "none")
             }
         }
         if (attacker.hp <= 0) {
             $(".chosen-player").text("DEAD")
+            $("#end").css("display", "grid")
         }
     })
+    $("#again").on("click", function () {
+        reset()
+    })
+    function reset() {
+        playerSelected = false;
+        combat = false;
+        enemyChosen = false;
+        attacker = null;
+        defender = null;
+        deadOpponents = 0;
+        frodo.pchar = false;
+        frodo.isEnemy = false;
+        frodo.isDead = false;
+        frodo.hp = 115;
+        frodo.ap = 20;
+        samwise.pchar = false;
+        samwise.isEnemy = false;
+        samwise.isDead = false;
+        samwise.hp = 130;
+        samwise.ap = 10;
+        gollum.pchar = false;
+        gollum.isEnemy = false;
+        gollum.isDead = false;
+        gollum.hp = 120;
+        gollum.ap = 15;
+        sauron.pchar = false;
+        sauron.isEnemy = false;
+        sauron.isDead = false;
+        sauron.hp = 150;
+        sauron.ap = 20;
+        $("#end").css("display", "none");
+        $("#select").html("Select your champion");
+        $("#frodo").css("top", "0px");
+        $("#frodo").css("left", "0px");
+        $("#samwise").css("top", "0px");
+        $("#samwise").css("left", "0px");
+        $("#gollum").css("top", "0px");
+        $("#gollum").css("left", "0px");
+        $("#sauron").css("top", "0px");
+        $("#sauron").css("left", "0px");
+        $(".char").css("background-color", "#444");
+        $("#fHealth").html(frodo.hp);
+        $("#sHealth").html(samwise.hp);
+        $("#gHealth").html(gollum.hp);
+        $("#snHealth").html(sauron.hp);
+        $("#fHealth").removeClass("chosen-player");
+        $("#sHealth").removeClass("chosen-player");
+        $("#gHealth").removeClass("chosen-player");
+        $("#snHealth").removeClass("chosen-player");
+    }
 });
