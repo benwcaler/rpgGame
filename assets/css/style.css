@@ -11,10 +11,11 @@ body {
 
 #title {
     display: block;
-    font-size: 40px;
+    font-size: 70px;
     text-align: center;
     padding: 15px 0;
     margin-bottom: 15px;
+    text-shadow: 0 0 40px gold;
 }
 
 img {
@@ -83,12 +84,4 @@ img {
     background-color: rgba(255, 0, 0, 0.5);
     float: left;
     margin: 150px 25px 0 0;
-}
-
-#frodo {
-    transition-duration: 2s;
-    transition-timing-function: ease-in-out;
-    transition-property: top, left;
-    top: 0px;
-    left: 0px;
 }
