@@ -43,45 +43,24 @@ img {
     margin: 15px 0;
 }
 
-#pzone {
-    width:49%;
-    height: 300px;
-    background-color: rgba(255,0,0,0.5);
-    border-right: 10px solid red;
-    z-index: 5;
-    display: inline-block;
-}
-
-#ezone {
-    width:49%;
-    height: 300px;
-    display: inline-block;
-}
-
-#eactive {
-    float: left;
-    width: 60%;
-    height: 300px;
-    background-color: rgba(0,255,0,0.5);
-}
-
-#gyard {
-    float: left;
-    width: 40%;
-    height: 300px;
-    background-color: rgba(0,0,255,0.5);
-}
-
 #button {
-    display: block;
+    display: none;
     text-align: center;
+    margin-top: 40px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 30px;
+    color: red;
+    background-color: transparent;
+    border: none;
+    position: relative;
+    top: 125px;
+    left: 525px;
 }
 
 #select {
     font-size: 30px;
     text-align: center;
     vertical-align: middle;
-    background-color: rgba(255, 0, 0, 0.5);
     float: left;
     margin: 150px 25px 0 0;
 }
